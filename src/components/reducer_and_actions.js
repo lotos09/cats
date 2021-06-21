@@ -1,20 +1,20 @@
-import {testRequest} from "./api";
+import {getBreedImages} from "./api";
 import {getBreeds} from './api';
 
 
-//random cat
+//breed images
 const initialState = []
-export const catReducer = (state = initialState, action) => {
+export const imagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'imgCat/getImgCat':
-            return [...state, action.payload]
+            return action.payload.map((item)=>item.url)
         default: return state;
     }
 }
 
-export const loadRandomCat = () => {
+export const loadBreedImages = (breedName) => {
     return async (dispatch, getState) => {
-        const payload = await testRequest();
+        const payload = await getBreedImages(breedName);
         dispatch({
             type: 'imgCat/getImgCat',
             payload: payload
@@ -38,5 +38,20 @@ export const loadBreeds = () => {
             type: 'breeds/loadBreeds',
             payload: payload
         })
+    }
+}
+
+export const chosenBreedReducer = (state='', action) => {
+    switch (action.type) {
+        case 'clickedBreed/setClickedBreed':
+            return action.payload
+        default: return state;
+    }
+}
+
+export const chooseBreedAction = (clickedBreedName) => {
+    return {
+        type: 'clickedBreed/setClickedBreed',
+        payload: clickedBreedName
     }
 }
