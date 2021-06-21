@@ -7,6 +7,10 @@ export const BreedInfo = () => {
     const clickedBreed = state.clickedBreed;
     const selectedBreedObjFromStore = state.breedsSlice.filter((obj)=> obj.id === clickedBreed);
 
+
+    if (clickedBreed === '') {
+        return <p>choose your fighter</p>
+    } else
     return (
         <div className='breedInfo'>
             <div className='breedImages'>

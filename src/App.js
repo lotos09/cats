@@ -4,6 +4,8 @@ import {useSelector, useDispatch} from "react-redux";
 import {loadBreedImages, loadBreeds} from './components/reducer_and_actions';
 import {Breed} from "./components/breedRender";
 import {BreedInfo} from "./components/BreedInfo";
+//MUI
+import { Button } from '@material-ui/core';
 
 function App() {
     const dispatch = useDispatch();
@@ -36,10 +38,16 @@ const [inputState, setInputState] = useState('');
   return (
     <div className="App">
         <BreedInfo/>
-        <div>buttons
-            <button onClick={logBreedsBtn}>log breeds</button>
-            <button onClick={()=> setBrState(filteredBreeds)}>load breeds</button>
-            <button onClick={()=> setBrState([])}>clear breeds list</button>
+        <div>
+            <Button onClick={logBreedsBtn} variant="contained" color="primary">
+                Log breeds
+            </Button>
+            <Button onClick={()=> setBrState(filteredBreeds)} variant="contained" color="primary">
+                load breeds
+            </Button>
+            <Button onClick={()=> setBrState([])} variant="contained" color="primary">
+                clear breeds
+            </Button>
         </div>
         <input type='text' value={inputState} onChange={inputHandle}/>
 
