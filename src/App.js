@@ -23,7 +23,14 @@ function App() {
 
 //input block
 
+const [inputState, setInputState] = useState('');
+    const inputHandle = ({target})=> {
+        setInputState(target.value);
+    }
 
+    useEffect(()=> {
+        setBrState(filteredBreeds.filter(item=>item.name.toLowerCase().includes(inputState.toLowerCase())))
+    }, [inputState])
     
   return (
     <div className="App">
@@ -32,6 +39,8 @@ function App() {
             <button onClick={()=> setBrState(filteredBreeds)}>load breeds</button>
             <button onClick={()=> setBrState([])}>clear breeds list</button>
         </div>
+        <input type='text' value={inputState} onChange={inputHandle}/>
+
         <div className='breedsContainer'>
             {brState.map((item)=>{
                 return <Breed key={item.id} breed={item}/>
