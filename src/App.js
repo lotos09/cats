@@ -5,16 +5,18 @@ import {loadBreedImages, loadBreeds} from './components/reducer_and_actions';
 import {Breed} from "./components/breedRender";
 import {BreedInfo} from "./components/BreedInfo";
 //MUI
-import { Button } from '@material-ui/core';
+import { makeStyles, Button, ButtonGroup, Input } from '@material-ui/core';
+import { GridList, GridListTile, GridListTileBar, ListSubheader, IconButton} from '@material-ui/core';
+import { useStyles } from './components/MUIStyles'
+
 
 function App() {
+    const classes = useStyles();
     const dispatch = useDispatch();
-
-//breed info
 
 //load breeds
     const breedsState = useSelector(store=> store.breedsSlice);
-    const filteredBreeds = breedsState.filter((item)=>item.image);
+    const filteredBreeds = breedsState.filter((item)=>item.image&&item.image.url);
     const [brState, setBrState] = useState([]);
 
     useEffect(()=> {
@@ -37,24 +39,34 @@ const [inputState, setInputState] = useState('');
     
   return (
     <div className="App">
-        <BreedInfo/>
         <div>
-            <Button onClick={logBreedsBtn} variant="contained" color="primary">
-                Log breeds
-            </Button>
-            <Button onClick={()=> setBrState(filteredBreeds)} variant="contained" color="primary">
-                load breeds
-            </Button>
-            <Button onClick={()=> setBrState([])} variant="contained" color="primary">
-                clear breeds
-            </Button>
+            <BreedInfo/>
+            <ButtonGroup variant="text" color="secondary" aria-label="text primary button group">
+                <Button onClick={logBreedsBtn} >
+                    Log breeds
+                </Button>
+                <Button onClick={()=> setBrState(filteredBreeds)} >
+                    load breeds
+                </Button>
+                <Button onClick={()=> setBrState([])} >
+                    clear breeds
+                </Button>
+            </ButtonGroup>
         </div>
-        <input type='text' value={inputState} onChange={inputHandle}/>
 
-        <div className='breedsContainer'>
-            {brState.map((item)=>{
-                return <Breed key={item.id} breed={item}/>
-            })}
+        <Input type='text' placeholder='search' id="outlined-basic"
+               label="Outlined" variant="outlined"
+               color='secondary'
+               value={inputState} onChange={inputHandle}/>
+        <div className={classes.root}>
+            <GridList cellHeight={180} className={classes.gridList}>
+                <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                    <ListSubheader component="div">Cat Breeds</ListSubheader>
+                </GridListTile>
+                {brState.map((item)=>{
+                    return <Breed key={item.id} breed={item}/>
+                })}
+            </GridList>
         </div>
     </div>
   );
