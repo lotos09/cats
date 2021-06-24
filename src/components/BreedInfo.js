@@ -2,6 +2,8 @@ import React from "react";
 import {useSelector} from "react-redux";
 import { GridList, GridListTile } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -10,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-around',
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
+        marginTop: '20px'
     },
     gridList: {
         display: 'flex',
@@ -20,15 +23,26 @@ const useStyles = makeStyles((theme) => ({
     },
     tile: {
         minWidth: '400px'
-    }
+    },
+    paper: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+            width: 'auto',
+            height: '100%',
+            backgroundColor: '#C3CBD6',
+            marginBottom: '50px'
+        },
+    },
 }));
 
 export const BreedInfo = () => {
     const classes = useStyles();
-
+//
     const state = useSelector(store=> store);
-    const clickedBreed = state.clickedBreed;
-    const selectedBreedObjFromStore = state.breedsSlice.filter((obj)=> obj.id === clickedBreed);
+    const clickedBreed = useSelector(store=>store.clickedBreed)
+    const selectedBreedObjFromStore = state.breedsSlice.breeds.filter((obj)=> obj.id === clickedBreed);
 
 
     if (clickedBreed === '') {
@@ -44,14 +58,24 @@ export const BreedInfo = () => {
                 ))}
             </GridList>
 
-            <div>
-                <h2>{selectedBreedObjFromStore[0].name}</h2>
-                <div>{selectedBreedObjFromStore[0].description}</div>
-                <div>{`Temperament: ${selectedBreedObjFromStore[0].temperament}`}</div>
+            <div className={classes.paper}>
+                <Paper elevation={3}>
+                    <StarIcon/>
+                    <h2>{selectedBreedObjFromStore[0].name}</h2>
+                    <div>{selectedBreedObjFromStore[0].description}</div>
+                    <div>{`Temperament: ${selectedBreedObjFromStore[0].temperament}`}</div>
+                </Paper>
+
             </div>
         </div>
     )
 }
+/*
+in paper component
+
+ */
+
+
 
 /*
             <div className='breedImages'>

@@ -1,12 +1,12 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useDispatch} from "react-redux";
 import {loadBreedImages} from "./reducer_and_actions";
 import {chooseBreedAction} from "./reducer_and_actions";
 import { GridListTile, GridListTileBar } from '@material-ui/core';
-import { useStyles } from './MUIStyles';
+import { useStylesApp } from './MUIStyles';
 
 export const Breed = (props) => {
-    const classes = useStyles();
+    const classes = useStylesApp();
     const obj = props.breed;
     const dispatch = useDispatch();
 
@@ -29,3 +29,4 @@ export const Breed = (props) => {
 
     )
 }
+

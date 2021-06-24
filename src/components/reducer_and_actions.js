@@ -3,11 +3,11 @@ import {getBreeds} from './api';
 
 
 //breed images
-const initialState = []
+const initialState = [];
 export const imagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'imgCat/getImgCat':
-            return action.payload.map((item)=>item.url)
+            return action.payload.map((item) => item.url)
         default: return state;
     }
 }
@@ -23,10 +23,10 @@ export const loadBreedImages = (breedName) => {
 }
 
 //all breeds info
-export const breedsReducer = (state = [], action) => {
+export const breedsReducer = (state = {loading: true, breeds: []}, action) => {
     switch (action.type) {
         case 'breeds/loadBreeds':
-            return action.payload
+            return {loading: false, breeds: action.payload}
         default: return state;
     }
 }
@@ -37,6 +37,7 @@ export const loadBreeds = () => {
         dispatch({
             type: 'breeds/loadBreeds',
             payload: payload
+
         })
     }
 }
