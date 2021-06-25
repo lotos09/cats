@@ -2,6 +2,7 @@ import React from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {Button, ButtonGroup} from "@material-ui/core";
 
 
 const columns = [
@@ -55,22 +56,22 @@ export default function DataGridDemo() {
 
     return (
         <div>
-            <nav>
-                <ul>
-                    <li>
+            <div>
+                <ButtonGroup variant="contained" color="primary">
+                    <Button>
                         <Link to='/'>Home</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/app'>app</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/dataGrid'>DataGrid</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/table'>Table</Link>
-                    </li>
-                </ul>
-            </nav>
+                    </Button>
+                </ButtonGroup>
+            </div>
             <div style={{  width: '100%' }}>
                 <DataGrid
                     rows={rowsBreeds}

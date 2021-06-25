@@ -12,15 +12,18 @@ export const useStylesApp = makeStyles((theme) => ({
     gridList: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         width: '80%',
         height: 'md',
     },
     gridListTile: {
-        maxHeight: '300px',
-        width: '400px',
-    },
 
+    },
+    gridImg: {
+        minHeight: '100px',
+        minWidth: '100px',
+        maxHeight: '300px'
+    }
     
 
 }))

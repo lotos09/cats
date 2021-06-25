@@ -17,7 +17,7 @@ export const Breed = (props) => {
 
     return (
         <GridListTile className={classes.gridListTile} key={obj.id}>
-            <img alt={obj.name} src={obj.image.url} />
+            <img className={classes.gridImg} alt={obj.name} src={obj.image.url} />
             <GridListTileBar
                 style={{
                     cursor:'pointer'

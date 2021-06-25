@@ -36,37 +36,27 @@ function App() {
         dispatch(loadBreeds());
     },[dispatch] )
 
-    const logBreedsBtn = () => {
-        console.log(breedsState);
-    }
-
     
   return (
     <div className="App">
         <div>
-            <nav>
-                <ul>
-                    <li>
+            <div>
+                <ButtonGroup variant="contained" color="primary">
+                    <Button>
                         <Link to='/'>Home</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/app'>app</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/dataGrid'>DataGrid</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/table'>Table</Link>
-                    </li>
-                </ul>
-            </nav>
+                    </Button>
+                </ButtonGroup>
+            </div>
             <BreedInfo/>
-            <ButtonGroup variant="contained" color="primary" aria-label="text primary button group">
-                <Button onClick={logBreedsBtn}>
-                    Log breeds Slice
-                </Button>
-                <Button variant="contained" color="primary">Table</Button>
-            </ButtonGroup>
         </div>
 
         <Input type='text' placeholder='search' id="outlined-basic"

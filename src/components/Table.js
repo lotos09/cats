@@ -10,17 +10,22 @@ import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import {useDispatch, useSelector} from "react-redux";
 import {Link, Route, Switch, useParams} from "react-router-dom";
-import {GridList, GridListTile, TableSortLabel} from "@material-ui/core";
+import {Button, ButtonGroup, GridList, GridListTile, Input, TablePagination, TableSortLabel} from "@material-ui/core";
 import {loadBreedImages, loadBreeds} from "./reducer_and_actions";
 //import {useStyles} from "./MUIStyles";
 
 const useStyles = makeStyles((theme) => ({
+    tablePage: {
+        display: "flex",
+        flexDirection: 'column',
+        alignItems: "center"
+    },
     table: {
         minWidth: 250,
         height: 500
     },
     tableAndInfo: {
-        display:"flex",
+        display: "flex",
     },
     paper: {
         display: 'flex',
@@ -36,34 +41,44 @@ const useStyles = makeStyles((theme) => ({
     gridList: {
         display: 'flex',
         flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: 'md',
+        justifyContent: 'space-evenly',
+        width: '80%',
         height: 'md',
     },
     tile: {
-        minWidth: '300px'
+        width: '100%'
     },
-}));
+    gridImg: {
+        minHeight: '100px',
+        minWidth: '100px',
+        maxHeight: '300px'
+    },
+    classname: {
 
+    }
+}));
 
 
 export default function BasicTable() {
     const dispatch = useDispatch();
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(loadBreeds());
-    },[dispatch] )
-
-
+    }, [dispatch])
 
     const classes = useStyles();
     const breedsState = useSelector(store => store.breedsSlice);
-    const rows = breedsState.breeds.filter((item) => {
-        return item.image && item.image.url && item.name
-    });
     const [sortState, setSortState] = useState({});
 
+//input
+    const [inputState, setInputState] = useState('');
+    const inputHandle = ({target}) => {
+        setInputState(target.value);
+    }
+    const filteredBreeds = breedsState.breeds.filter((item) => {
+        return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
+    });
 
-    rows.sort((a, b) => {
+    filteredBreeds.sort((a, b) => {
         if (sortState.orderBy === 'name' && sortState.order === false) {
             return a.name.localeCompare(b.name);
         }
@@ -93,38 +108,51 @@ export default function BasicTable() {
         }
         if (sortState.orderBy === 'child' && sortState.order === true) {
             return b.child_friendly - a.child_friendly;
-        } else return rows;
+        } else return filteredBreeds;
     })
     const sortButton = (column) => setSortState({orderBy: column, order: !sortState.order})
+    const [page, setPage] = React.useState(0);
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const pagedArr = filteredBreeds.slice(page * 10, (page + 1) * 10);
+
 
     return (
-        <div>
-            <nav>
-                <ul>
-                    <li>
+        <div className={classes.tablePage}>
+            <div>
+                <ButtonGroup variant="contained" color="primary">
+                    <Button>
                         <Link to='/'>Home</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/app'>app</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/dataGrid'>DataGrid</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/table'>Table</Link>
-                    </li>
-                </ul>
-            </nav>
+                    </Button>
+                </ButtonGroup>
+            </div>
+
             <div className={classes.tableAndInfo}>
                 <div className={classes.tableContainer}>
-                    <TableContainer  component={Paper}>
+
+                    <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
-                                <TableRow>
+                                <TableRow variant="head">
                                     <TableCell onClick={() => sortButton('name')}>
                                         <TableSortLabel direction={sortState.order ? 'asc' : 'desc'}
                                                         active={sortState.orderBy === 'name'}
                                         >Name</TableSortLabel>
+                                        <Input type='text' placeholder='search' id="outlined-basic"
+                                               label="Outlined" variant="outlined"
+                                               color='secondary'
+                                               value={inputState} onChange={inputHandle}/>
                                     </TableCell>
                                     <TableCell align="center" onClick={() => sortButton('origin')}>
                                         <TableSortLabel direction={sortState.order ? 'asc' : 'desc'}
@@ -149,13 +177,13 @@ export default function BasicTable() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => {
+                                {pagedArr.map((row) => {
                                     return <TableRow key={row.id}>
 
                                         <TableCell component="th" scope="row">
-                                                <Link to={`/table/${row.id}`}>
+                                            <Link to={`/table/${row.id}`}>
                                                 {row.name}</Link>
-                                            </TableCell>
+                                        </TableCell>
 
 
                                         <TableCell align="center">{row.origin}</TableCell>
@@ -169,13 +197,21 @@ export default function BasicTable() {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    <TablePagination
+                        component="div"
+                        count={filteredBreeds.length}
+                        rowsPerPageOptions={[10]}
+                        rowsPerPage={10}
+                        page={page}
+                        onChangePage={handleChangePage}
+                    />
                 </div>
                 <Switch>
                     <Route exact path={'/table'}>
                         <h3>Please select a breed</h3>
                     </Route>
                     <Route path={`/table/:breedId`}>
-                        <Info />
+                        <Info/>
                     </Route>
                 </Switch>
             </div>
@@ -183,41 +219,42 @@ export default function BasicTable() {
 
     );
 }
+
 function Info() {
     const classes = useStyles();
-    let { breedId } = useParams();
-    const selectedBreed = useSelector(store => store.breedsSlice.breeds.filter((item)=> item.id === breedId))[0]
-    const images = useSelector(store=> store.breedImagesSlice);
+    let {breedId} = useParams();
+    const selectedBreed = useSelector(store => store.breedsSlice.breeds.filter((item) => item.id === breedId))[0]
+    const images = useSelector(store => store.breedImagesSlice);
     const dispatch = useDispatch();
 
 
-    useEffect(()=> {
+    useEffect(() => {
         if (selectedBreed !== undefined)
-        dispatch(loadBreedImages(selectedBreed.id))
-    },[dispatch, selectedBreed] )
+            dispatch(loadBreedImages(selectedBreed.id))
+    }, [dispatch, selectedBreed])
 
 
     if (selectedBreed === undefined) {
         return <p>choose your fighter</p>
     } else
-    return (
-        <div className={classes.root}>
-            <GridList cellHeight={360}  className={classes.gridList} cols={5}>
-                {images.map((item, index)=>(
-                    <GridListTile key={index} className={classes.tile}>
-                        <img alt='breedImage' src={item} key={index}/>
-                    </GridListTile>
-                ))}
-            </GridList>
+        return (
+            <div className={classes.root}>
+                <div className={classes.gridList}>
+                    {images.map((item, index) => (
 
-            <div className={classes.paper}>
-                <Paper elevation={3}>
-                    <h2>{selectedBreed.name}</h2>
-                    <div>{selectedBreed.description}</div>
-                    <div>{`Temperament: ${selectedBreed.temperament}`}</div>
-                </Paper>
+                        <img key={index} className={classes.gridImg} alt='breedImage' src={item} key={index}/>
 
+                    ))}
+                </div>
+
+                <div className={classes.paper}>
+                    <Paper elevation={1}>
+                        <h2>{selectedBreed.name}</h2>
+                        <div>{selectedBreed.description}</div>
+                        <div>{`Temperament: ${selectedBreed.temperament}`}</div>
+                    </Paper>
+
+                </div>
             </div>
-        </div>
-    );
+        );
 }

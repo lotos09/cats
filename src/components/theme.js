@@ -9,8 +9,19 @@ export const theme = createMuiTheme({
             // Name of the rule
             label: {
                 // Some CSS
-                color: 'whitesmoke',
+                color: 'white'
             },
         },
+
+        MuiTableCell: {
+            head: {
+                color: 'blue'
+            }
+        },
+        MuiGridListTile: {
+            root: {
+                width: '500px'
+            }
+        }
     },
 });

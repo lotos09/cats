@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {loadBreeds} from "./reducer_and_actions";
+import {Button, ButtonGroup} from "@material-ui/core";
 
 function Home() {
     const dispatch = useDispatch();
@@ -21,22 +22,20 @@ function Home() {
 
     return (
         <div>
-            <nav>
-                <ul>
-                    <li>
+                <ButtonGroup variant="contained" color="primary">
+                    <Button>
                         <Link to='/'>Home</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/app'>app</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/dataGrid'>DataGrid</Link>
-                    </li>
-                    <li>
+                    </Button>
+                    <Button>
                         <Link to='/table'>Table</Link>
-                    </li>
-                </ul>
-            </nav>
+                    </Button>
+                </ButtonGroup>
         </div>
 
     )
