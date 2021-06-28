@@ -22,7 +22,7 @@ export function NavBar() {
     let history = useHistory();
 
 
-    function appClick() {
+    function galleryClick() {
         history.push('/gallery')
     }
     function dataGridClick() {
@@ -39,7 +39,7 @@ export function NavBar() {
         <div className={classes.root}>
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={homeClick}>home</Button>
-                <Button onClick={appClick}>gallery</Button>
+                <Button onClick={galleryClick}>gallery</Button>
                 <Button onClick={dataGridClick}>dataGrid</Button>
                 <Button onClick={tableClick}>table</Button>
             </ButtonGroup>

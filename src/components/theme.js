@@ -4,6 +4,7 @@ const {createMuiTheme} = require("@material-ui/core");
 
 export const theme = createMuiTheme({
     overrides: {
+
         // Style sheet name ⚛️
         MuiButton: {
             // Name of the rule
@@ -22,8 +23,5 @@ export const theme = createMuiTheme({
                 width: '500px'
             }
         },
-        '& < body': {
-            backgroundColor: 'black'
-        }
     },
 });

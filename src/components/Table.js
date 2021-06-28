@@ -21,6 +21,7 @@ import {NavBar} from "./NavBar";
 //import {useStyles} from "./MUIStyles";
 
 const useStyles = makeStyles((theme) => ({
+
     tablePage: {
         display: "flex",
         flexDirection: 'column',
@@ -68,8 +69,8 @@ export default function BasicTable() {
     useEffect(() => {
         dispatch(loadBreeds());
     }, [dispatch])
-
     const classes = useStyles();
+
     const breedsState = useSelector(store => store.breedsSlice);
     const [sortState, setSortState] = useState({});
 

@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 
 import {NavBar} from "./NavBar";
+import {Home} from "./Home";
 
 export function Routes() {
 
@@ -19,7 +20,6 @@ export function Routes() {
         <Router>
             <div>
                 <Switch>
-
                     <Route path='/gallery'>
                         <Gallery/>
                     </Route>
@@ -30,7 +30,7 @@ export function Routes() {
                         <BasicTable/>
                     </Route>
                     <Route exact path='/'>
-                        <NavBar/>
+                        <Home/>
                     </Route>
                 </Switch>
             </div>

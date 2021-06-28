@@ -11,6 +11,7 @@ import {GridList, GridListTile, ListSubheader, CircularProgress} from '@material
 import {NavBar} from "./NavBar";
 
 const useStylesApp = makeStyles((theme) => ({
+
     gallery: {
         display: "flex",
         flexDirection: "column",
