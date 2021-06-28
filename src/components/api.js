@@ -1,4 +1,4 @@
-const urlRandom = `https://api.thecatapi.com/v1/images/search?limit=5&breed_id=`;
+const urlRandom = `https://api.thecatapi.com/v1/images/search?limit=4&breed_id=`;
 export const getBreedImages = async (breedName) => {
     const response = await fetch(urlRandom+breedName, {
         method: 'GET',

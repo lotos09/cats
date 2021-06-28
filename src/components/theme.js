@@ -15,13 +15,15 @@ export const theme = createMuiTheme({
 
         MuiTableCell: {
             head: {
-                color: 'blue'
             }
         },
         MuiGridListTile: {
             root: {
                 width: '500px'
             }
+        },
+        '& < body': {
+            backgroundColor: 'black'
         }
     },
 });

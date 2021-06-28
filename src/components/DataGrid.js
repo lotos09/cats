@@ -1,8 +1,7 @@
 import React from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
-import {Button, ButtonGroup} from "@material-ui/core";
+import {NavBar} from "./NavBar";
 
 
 const columns = [
@@ -57,20 +56,7 @@ export default function DataGridDemo() {
     return (
         <div>
             <div>
-                <ButtonGroup variant="contained" color="primary">
-                    <Button>
-                        <Link to='/'>Home</Link>
-                    </Button>
-                    <Button>
-                        <Link to='/app'>app</Link>
-                    </Button>
-                    <Button>
-                        <Link to='/dataGrid'>DataGrid</Link>
-                    </Button>
-                    <Button>
-                        <Link to='/table'>Table</Link>
-                    </Button>
-                </ButtonGroup>
+                <NavBar/>
             </div>
             <div style={{  width: '100%' }}>
                 <DataGrid

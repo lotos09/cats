@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Welcome} from "./components/Welcome";
+import {Routes} from "./components/Routes";
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import {store} from './components/store'
@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
       <ThemeProvider theme={theme}>
           <Provider store={store}>
-              <Welcome/>
+              <Routes/>
           </Provider>
       </ThemeProvider>
 

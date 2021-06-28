@@ -1,31 +1,30 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import { GridList, GridListTile } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-        marginTop: '20px'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
     },
-    gridList: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        width: 'md',
-        height: 'md',
+    images: {
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
     },
-    tile: {
-        minWidth: '400px'
+    imgContainer: {
+        minWidth: 200,
+        maxHeight: 300,
+    },
+    img: {
+        maxHeight: 300,
     },
     paper: {
         display: 'flex',
+        textAlign: "center",
         flexWrap: 'wrap',
         '& > *': {
             margin: theme.spacing(1),
@@ -50,13 +49,16 @@ export const BreedInfo = () => {
     } else
     return (
         <div className={classes.root}>
-            <GridList cellHeight={360}  className={classes.gridList} cols={5}>
-                {state.breedImagesSlice.map((item, index)=>(
-                    <GridListTile key={index} className={classes.tile}>
-                        <img alt='breedImage' src={item} key={index}/>
-                    </GridListTile>
-                ))}
-            </GridList>
+            <Paper>
+                <div className={classes.images}>
+                    {state.breedImagesSlice.map((item, index)=>(
+                        <div className={classes.imgContainer}>
+                            <img alt='breedImage' className={classes.img} src={item} key={index}/>
+                        </div>
+                    ))}
+                </div>
+            </Paper>
+
 
             <div className={classes.paper}>
                 <Paper elevation={3}>
@@ -70,17 +72,3 @@ export const BreedInfo = () => {
         </div>
     )
 }
-/*
-in paper component
-
- */
-
-
-
-/*
-            <div className='breedImages'>
-                {state.breedImagesSlice.map((item, index)=> {
-                        return <img alt='breedImage' src={item} key={index}/>
-                })}
-            </div>
- */

@@ -9297,6 +9297,11 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.1.tgz"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-preload-image@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-preload-image/-/react-preload-image-1.0.7.tgz#4fc4afccc72b11465df2898ab4aae7832f233bab"
+  integrity sha512-lIREXvawPJsykq2aFSk4XRP2/mvsnEX5FpZUExXW7eeHhXCLuUARus/DjfxfbaLfIwXDjZ/tQsmq5JDemSgaeA==
+
 react-redux@^7.2.4:
   version "7.2.4"
   resolved "https://registry.npmjs.org/react-redux/-/react-redux-7.2.4.tgz"
