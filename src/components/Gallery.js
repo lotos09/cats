@@ -70,11 +70,11 @@ function Gallery() {
                    value={inputState} onChange={inputHandle}/>
 
             <h2>Gallery</h2>
-
+            {loading && <div className={classes.root}>
+                <CircularProgress/>
+            </div>}
             <GridList className={classes.gridList}>
-                {loading && <div className={classes.root}>
-                    <CircularProgress/>
-                </div>}
+
                 {!loading && filteredBreeds.map((item) => {
                     return <Breed key={item.id} breed={item}/>
                 })}

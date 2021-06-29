@@ -138,6 +138,7 @@ export default function BasicTable() {
                                 <Input type='text' placeholder='search' id="outlined-basic"
                                        label="Outlined" variant="outlined"
                                        color='secondary'
+                                       onClick={(e)=> e.stopPropagation()}
                                        value={inputState} onChange={inputHandle}/>
                             </TableCell>
                             <TableCell align="center" onClick={() => sortButton('origin')}>
