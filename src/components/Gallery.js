@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 //app components
-import {BreedInfo} from "./BreedInfo";
+import {BreedInfo} from "./breedInfo/BreedInfo";
 import {chooseBreedAction} from "../store/actions/chooseBreedAction";
 import {loadBreedImages} from "../store/actions/loadBreedImages";
 import {loadBreeds} from "../store/actions/loadBreeds";

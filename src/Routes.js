@@ -1,7 +1,7 @@
 import React from "react";
-import Gallery from "./Gallery";
-import DataGridDemo from "./DataGrid";
-import BasicTable from "./Table";
+import Gallery from "./components/Gallery";
+import DataGridDemo from "./components/DataGrid";
+import BasicTable from "./components/Table";
 
 //Routes
 import {
@@ -10,7 +10,7 @@ import {
     Route,
 } from "react-router-dom";
 
-import {Home} from "./Home";
+import {Home} from "./components/Home";
 
 export function Routes() {
 
