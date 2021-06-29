@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Menu, MenuItem} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
-import logo from '../media/don.jpg';
+import logo from '../assets/don.jpg';
 import {useStyles} from "../styles/homeStyles";
 
 

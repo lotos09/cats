@@ -4,7 +4,7 @@ import {Button, ButtonGroup} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import {useStyles} from "../styles/navBarStyles";
 import {loadBreeds} from "../store/actions/loadBreeds";
-
+import {Link} from 'react-router-dom';
 
 export function NavBar() {
     const classes = useStyles();
@@ -33,7 +33,7 @@ export function NavBar() {
         <div className={classes.root}>
             <ButtonGroup variant="contained" color="primary">
                 <Button onClick={homeClick}>home</Button>
-                <Button onClick={galleryClick}>gallery</Button>
+                <Button component={<Link to='/gallery'/>}>gallery</Button>
                 <Button onClick={dataGridClick}>dataGrid</Button>
                 <Button onClick={tableClick}>table</Button>
             </ButtonGroup>
