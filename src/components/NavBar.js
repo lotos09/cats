@@ -1,16 +1,10 @@
 import {useDispatch} from "react-redux";
 import React, {useEffect} from "react";
-import {loadBreeds} from "./reducer_and_actions";
-import {Button, ButtonGroup, makeStyles} from "@material-ui/core";
-import {Link, useHistory} from "react-router-dom";
+import {Button, ButtonGroup} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
+import {useStyles} from "../styles/navBarStyles";
+import {loadBreeds} from "../store/actions/loadBreeds";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        justifyContent: "center",
-    }
-
-}))
 
 export function NavBar() {
     const classes = useStyles();
@@ -47,34 +41,3 @@ export function NavBar() {
         </div>
     )
 }
-
-/*
-export function NavBar() {
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    useEffect(()=> {
-        dispatch(loadBreeds());
-    },[dispatch] )
-
-    return (
-        <div className={classes.root}>
-            <ButtonGroup variant="contained" color="primary">
-                <Button>
-                    <Link to='/'>home</Link>
-                </Button>
-                <Button>
-                    <Link to='/app'>Gallery</Link>
-                </Button>
-                <Button>
-                    <Link to='/dataGrid'>DataGrid</Link>
-                </Button>
-                <Button>
-                    <Link to='/table'>Table</Link>
-                </Button>
-            </ButtonGroup>
-        </div>
-
-    )
-
-}
- */

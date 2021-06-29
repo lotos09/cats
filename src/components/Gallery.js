@@ -1,45 +1,22 @@
-import '../App.css';
 import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 //app components
-import {chooseBreedAction, loadBreedImages, loadBreeds} from './reducer_and_actions';
 import {BreedInfo} from "./BreedInfo";
+import {chooseBreedAction} from "../store/actions/chooseBreedAction";
+import {loadBreedImages} from "../store/actions/loadBreedImages";
+import {loadBreeds} from "../store/actions/loadBreeds";
 
 //MUI
-import {GridListTileBar, Input, makeStyles, Paper, Typography} from '@material-ui/core';
-import {GridList, GridListTile, ListSubheader, CircularProgress} from '@material-ui/core';
+import {GridListTileBar, Input} from '@material-ui/core';
+import {GridList, GridListTile, CircularProgress} from '@material-ui/core';
 import {NavBar} from "./NavBar";
+import {useStyles} from "../styles/galleryStyles";
 
-const useStylesApp = makeStyles((theme) => ({
 
-    gallery: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-    },
-
-    gridList: {
-        display: "flex",
-        justifyContent: "center",
-        width: '80%',
-        height: '100%',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-        transform: 'translateZ(0)',
-    },
-
-    gridListTile: {
-        minWidth: 200,
-        maxHeight: 300,
-        textAlign: "center",
-        display: "flex",
-        justifyContent: "center",
-    }
-
-}))
 
 
 function Gallery() {
-    const classes = useStylesApp();
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const [inputState, setInputState] = useState('');
@@ -83,18 +60,17 @@ function Gallery() {
     );
 }
 
-const Breed = (props) => {
-    const classes = useStylesApp();
-    const obj = props.breed;
+const Breed = ({breed}) => {
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     const handleClick = () => {
-        dispatch(loadBreedImages(obj.id))
-        dispatch(chooseBreedAction(obj.id))
+        dispatch(loadBreedImages(breed.id))
+        dispatch(chooseBreedAction(breed.id))
     }
 
     return (
-        <GridListTile className={classes.gridListTile} key={obj.id} onClick={()=>{
+        <GridListTile className={classes.gridListTile} key={breed.id} onClick={()=>{
             handleClick()
             window.scroll({
                 top: 42,
@@ -102,13 +78,11 @@ const Breed = (props) => {
                 behavior: 'smooth'
             })
         }}>
-            <img className={classes.gridImg} alt={obj.name} src={obj.image.url}/>
+            <img alt={breed.name} src={breed.image.url}/>
             <GridListTileBar
-                style={{
-                    cursor: 'pointer'
-                }}
-                title={obj.name}
-                onClick={() => handleClick()}
+                className={classes.gridListTileBar}
+                title={breed.name}
+                onClick={handleClick}
             />
         </GridListTile>
 

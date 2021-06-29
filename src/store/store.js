@@ -1,7 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
-import {imagesReducer, breedsReducer, chosenBreedReducer} from './reducer_and_actions'
 
+import {imagesReducer} from "./reducers/imagesReducer";
+import {breedsReducer} from "./reducers/breedsReducer";
+import {chosenBreedReducer} from "./reducers/chosenBreedReducer";
 
 export const store = createStore(combineReducers({
     breedImagesSlice: imagesReducer,

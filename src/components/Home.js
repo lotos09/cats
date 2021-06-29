@@ -1,22 +1,10 @@
 import React from "react";
-import {Button, makeStyles, Menu, MenuItem} from "@material-ui/core";
+import {Button, Menu, MenuItem} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import logo from '../media/don.jpg';
+import {useStyles} from "../styles/homeStyles";
 
-const useStyles = makeStyles((Theme) => ({
-    root: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        '& > img': {
-            height: '100vh'
-        }
-    },
 
-    btn: {
-        position: "absolute"
-    }
-}))
 
 export const Home = () => {
     const classes = useStyles();
@@ -41,7 +29,7 @@ export const Home = () => {
 
     return (
         <div className={classes.root}>
-            <img src={logo}/>
+            <img src={logo} alt='Don Vito image'/>
             <Button className={classes.btn} aria-controls="simple-menu" aria-haspopup="true"
                     variant='contained' color='primary'
                     onClick={handleClick}>

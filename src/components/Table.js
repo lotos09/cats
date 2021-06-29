@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {useDispatch, useSelector} from "react-redux";
+//app components
+import {loadBreeds} from "../store/actions/loadBreeds";
+import {loadBreedImages} from "../store/actions/loadBreedImages";
+import {clearImagesReducerAction} from "../store/actions/clearImagesReducerAction";
+//router
+import {Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
+//MUI
+import {useStyles} from "../styles/tableStyles";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,60 +16,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
-import {useDispatch, useSelector} from "react-redux";
-import {Route, Switch, useHistory, useLocation, useParams} from "react-router-dom";
-import {
-    CircularProgress, Divider,
-    Input,
-    TablePagination,
-    TableSortLabel
-} from "@material-ui/core";
-import {clearImagesReducer, loadBreedImages, loadBreeds} from "./reducer_and_actions";
+import {CircularProgress, Input, TablePagination, TableSortLabel} from "@material-ui/core";
 import {NavBar} from "./NavBar";
-//import {useStyles} from "./MUIStyles";
 
-const useStyles = makeStyles((theme) => ({
 
-    tablePage: {
-        display: "flex",
-        flexDirection: 'column',
-        alignItems: "center"
-    },
-    infoPage: {
-        display: "flex",
-        flexDirection: 'column',
-        alignItems: "center"
-    },
-    paper: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        width: '100%',
-        maxWidth: 900,
-        '& > *': {
-            margin: theme.spacing(1),
-            height: '100%',
-            backgroundColor: '#C3CBD6',
-            marginBottom: '50px',
-        },
-    },
-    gridList: {
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        flexWrap: "wrap"
-    },
 
-    gridImg: {
-        width: '20%',
-        minWidth: 300,
-    },
-    tableRow: {
-        cursor: "pointer"
-    },
-    spinner: {
-        textAlign: "center"
-    },
-}));
 
 
 export default function BasicTable() {
@@ -83,7 +42,7 @@ export default function BasicTable() {
         return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
     });
 
-    filteredBreeds.sort((a, b) => {
+    const sortedBreeds = [...filteredBreeds].sort((a, b) => {
         if (sortState.orderBy === 'name' && sortState.order === false) {
             return a.name.localeCompare(b.name);
         }
@@ -113,7 +72,7 @@ export default function BasicTable() {
         }
         if (sortState.orderBy === 'child' && sortState.order === true) {
             return b.child_friendly - a.child_friendly;
-        } else return filteredBreeds;
+        } return filteredBreeds;
     })
     const sortButton = (column) => setSortState({orderBy: column, order: !sortState.order})
     const [page, setPage] = React.useState(0);
@@ -121,9 +80,17 @@ export default function BasicTable() {
         setPage(newPage);
     };
 
-    const pagedArr = filteredBreeds.slice(page * 10, (page + 1) * 10);
+    const pagedArr = sortedBreeds.slice(page * 10, (page + 1) * 10);
     let history = useHistory();
     let location = useLocation();
+
+    const tableBodyRowClick = (id) => {
+        if (location.pathname !== `/table/${id}`) {
+            dispatch(clearImagesReducerAction())
+            history.push(`/table/${id}`)
+        }
+    }
+
     return (
         <div className={classes.tablePage}>
             <NavBar/>
@@ -167,13 +134,7 @@ export default function BasicTable() {
                         {pagedArr.map((row) => {
                             return <TableRow key={row.id} className={classes.tableRow}
                                              selected={location.pathname === `/table/${row.id}`}
-                                             onClick={() => {
-                                                 if (location.pathname !== `/table/${row.id}`) {
-                                                     dispatch(clearImagesReducer())
-                                                     history.push(`/table/${row.id}`)
-                                                 }
-
-                                             }}>
+                                             onClick={()=> tableBodyRowClick(row.id)}>
                                 <TableCell>
                                     {row.name}
                                 </TableCell>
@@ -190,7 +151,7 @@ export default function BasicTable() {
             </TableContainer>
             <TablePagination
                 component="div"
-                count={filteredBreeds.length}
+                count={sortedBreeds.length}
                 rowsPerPageOptions={[10]}
                 rowsPerPage={10}
                 page={page}
@@ -214,7 +175,7 @@ export default function BasicTable() {
 function Info() {
     const classes = useStyles();
     let {breedId} = useParams();
-    const selectedBreed = useSelector(store => store.breedsSlice.breeds.filter((item) => item.id === breedId))[0]
+    const selectedBreed = useSelector(store => store.breedsSlice.breeds.find((item) => item.id === breedId))
     const images = useSelector(store => store.breedImagesSlice);
     const dispatch = useDispatch();
 
@@ -234,8 +195,8 @@ function Info() {
                     <CircularProgress/>
                 </div>}
                 {Boolean(images.length) && <div className={classes.gridList}>
-                    {images.map((item, index) => (
-                        <img className={classes.gridImg} alt='breedImage' src={item} key={index}/>
+                    {images.map((item) => (
+                        <img className={classes.gridImg} alt='breedImage' src={item} key={item}/>
                     ))}
                 </div>}
 

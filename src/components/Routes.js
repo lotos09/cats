@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Gallery from "./Gallery";
 import DataGridDemo from "./DataGrid";
 import BasicTable from "./Table";
@@ -8,10 +8,8 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link, useHistory,
 } from "react-router-dom";
 
-import {NavBar} from "./NavBar";
 import {Home} from "./Home";
 
 export function Routes() {
