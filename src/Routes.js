@@ -1,16 +1,17 @@
 import React from "react";
-import Gallery from "./components/Gallery";
-import DataGridDemo from "./components/DataGrid";
-import BasicTable from "./components/Table";
-
+import {Gallery} from "./components/Gallery/Gallery";
+import DataGridDemo from "./components/Table-DataGrid/DataGrid";
+import {BreedsTable} from "./components/Table-DataGrid/BreedsTable";
+import {Home} from "./components/Home/Home";
 //Routes
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
+import {SearchAppBar} from "./components/AppBar/AppBar";
 
-import {Home} from "./components/Home";
+
 
 export function Routes() {
 
@@ -18,6 +19,9 @@ export function Routes() {
         <Router>
             <div>
                 <Switch>
+                    <Route exact path='/appbar'>
+                        <SearchAppBar/>
+                    </Route>
                     <Route path='/gallery'>
                         <Gallery/>
                     </Route>
@@ -25,11 +29,12 @@ export function Routes() {
                         <DataGridDemo/>
                     </Route>
                     <Route path='/table'>
-                        <BasicTable/>
+                        <BreedsTable/>
                     </Route>
                     <Route exact path='/'>
                         <Home/>
                     </Route>
+
                 </Switch>
             </div>
         </Router>

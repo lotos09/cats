@@ -9,3 +9,10 @@ export const loadBreedImages = (breedName) => {
         })
     }
 }
+
+export const clearImagesReducerAction = () => {
+    return {
+        type: 'imgCat/clearState',
+        payload: []
+    }
+}

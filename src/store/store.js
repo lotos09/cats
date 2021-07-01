@@ -3,10 +3,10 @@ import thunk from "redux-thunk";
 
 import {imagesReducer} from "./reducers/imagesReducer";
 import {breedsReducer} from "./reducers/breedsReducer";
-import {chosenBreedReducer} from "./reducers/chosenBreedReducer";
+import {inputReducer} from "./reducers/inputReducer";
 
 export const store = createStore(combineReducers({
     breedImagesSlice: imagesReducer,
     breedsSlice: breedsReducer,
-    clickedBreed: chosenBreedReducer
+    inputSlice: inputReducer,
 }), applyMiddleware(thunk));

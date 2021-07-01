@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { DataGrid } from '@material-ui/data-grid';
-import {useSelector} from "react-redux";
-import {NavBar} from "./NavBar";
+import {useDispatch, useSelector} from "react-redux";
+import {loadBreeds} from "../../store/actions/loadBreeds";
+
 
 
 const columns = [
@@ -37,6 +38,10 @@ const columns = [
 
 export default function DataGridDemo() {
     const breedsState = useSelector(store=> store.breedsSlice);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadBreeds());
+    }, [dispatch])
     const filteredBreeds = breedsState.breeds.filter((item)=> {
         return item.image && item.image.url && item.name
     });
@@ -49,14 +54,13 @@ export default function DataGridDemo() {
             child_friendly: item.child_friendly,
         }
     })
-    console.log(filteredBreeds);
 
 
 
     return (
         <div>
             <div>
-                <NavBar/>
+
             </div>
             <div style={{  width: '100%' }}>
                 <DataGrid
