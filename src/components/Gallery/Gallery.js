@@ -1,14 +1,13 @@
 import React, {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 //app components
-import {loadBreeds} from "../../store/actions/loadBreeds";
-import {Breed} from "./Breed";
+import {loadBreeds} from "../../store/actions/breedsReducerActions";
+import {Breed} from "../shared/Breed/Breed";
 //MUI
 import {GridList, CircularProgress} from '@material-ui/core';
 import {useStyles} from "./galleryStyles";
 import {Route, Switch} from "react-router-dom";
-import {BreedInfo} from "../shared/BreedInfo";
-import {SearchAppBar} from "../AppBar/AppBar";
+import {BreedInfo} from "../shared/BreedInfo/BreedInfo";
 
 
 
@@ -32,11 +31,9 @@ export function Gallery() {
 
     return (
         <div className={classes.gallery}>
-            <SearchAppBar/>
             <Switch>
                 <Route exact path={'/gallery'}>
-                    <h2>Gallery</h2>
-                    {loading && <div className={classes.root}>
+                    {loading && <div>
                         <CircularProgress/>
                     </div>}
                     <GridList className={classes.gridList}>

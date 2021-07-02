@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 //app components
-import {loadBreeds} from "../../store/actions/loadBreeds";
+import {loadBreeds} from "../../store/actions/breedsReducerActions";
 import { clearImagesReducerAction} from "../../store/actions/imagesReducerActions";
 //router
 import {Route, Switch, useHistory, useLocation} from "react-router-dom";
@@ -16,8 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import {TablePagination, TableSortLabel} from "@material-ui/core";
-import {BreedInfo} from "../shared/BreedInfo";
-import {SearchAppBar} from "../AppBar/AppBar";
+import {BreedInfo} from "../shared/BreedInfo/BreedInfo";
 
 
 export function BreedsTable() {
@@ -87,9 +86,6 @@ export function BreedsTable() {
 
     return (
         <div className={classes.tablePage}>
-            <SearchAppBar/>
-
-
             <Switch>
                 <Route exact path={'/table'}>
                     <TableContainer component={Paper}>

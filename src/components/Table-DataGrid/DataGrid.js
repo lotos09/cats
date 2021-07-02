@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { DataGrid } from '@material-ui/data-grid';
 import {useDispatch, useSelector} from "react-redux";
-import {loadBreeds} from "../../store/actions/loadBreeds";
+import {loadBreeds} from "../../store/actions/breedsReducerActions";
 
 
 

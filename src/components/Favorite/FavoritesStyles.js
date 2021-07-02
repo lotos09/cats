@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: 20,
+        marginTop: 20
     },
 
     gridList: {

@@ -9,18 +9,20 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import {SearchAppBar} from "./components/AppBar/AppBar";
-
+import {SearchAppBar} from "./components/shared/AppBar/AppBar";
+import {Favorites} from "./components/Favorite/Favorites";
 
 
 export function Routes() {
 
+
     return (
         <Router>
             <div>
+                <SearchAppBar/>
                 <Switch>
-                    <Route exact path='/appbar'>
-                        <SearchAppBar/>
+                    <Route path='/favorites'>
+                        <Favorites/>
                     </Route>
                     <Route path='/gallery'>
                         <Gallery/>
@@ -34,7 +36,6 @@ export function Routes() {
                     <Route exact path='/'>
                         <Home/>
                     </Route>
-
                 </Switch>
             </div>
         </Router>

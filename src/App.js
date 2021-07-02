@@ -7,6 +7,7 @@ import React from "react";
 
 
 export function App() {
+
     return (
         <ThemeProvider theme={theme}>
             <Provider store={store}>
