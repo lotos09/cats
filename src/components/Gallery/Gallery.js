@@ -28,7 +28,7 @@ export function Gallery() {
         dispatch(loadBreeds());
     }, [dispatch])
 
-
+    console.log(window)
     return (
         <div className={classes.gallery}>
             <Switch>

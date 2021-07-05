@@ -5,13 +5,12 @@ import {Routes} from "./Routes";
 import {ThemeProvider} from "@material-ui/core/styles";
 import React from "react";
 
-
 export function App() {
 
     return (
         <ThemeProvider theme={theme}>
             <Provider store={store}>
-                <Routes/>
+                    <Routes/>
             </Provider>
         </ThemeProvider>
     );

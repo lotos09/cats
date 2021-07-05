@@ -1,4 +1,4 @@
-export const inputReducer = (state = 'aa', action) => {
+export const inputReducer = (state = '', action) => {
     switch (action.type) {
         case 'input/setInput':
             return action.payload;

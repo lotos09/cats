@@ -3,15 +3,18 @@ import {createMuiTheme} from "@material-ui/core";
 
 export const theme = createMuiTheme({
     overrides: {
-        MuiButton: {
-            label: {
-                color: 'white'
+        '@global': {
+            '.MuiButton-contained a': {
+                color: 'red',
             },
         },
+        MuiButton: {
+
+        },
+
 
         MuiTableCell: {
-            head: {
-            }
+            head: {}
         },
         MuiGridListTile: {
             root: {

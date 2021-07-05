@@ -15,7 +15,6 @@ import {Favorites} from "./components/Favorite/Favorites";
 
 export function Routes() {
 
-
     return (
         <Router>
             <div>
