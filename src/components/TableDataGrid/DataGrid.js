@@ -78,14 +78,17 @@ const columns = [
 
 export default function DataGridDemo() {
     const classes = useStyles();
-    const breedsState = useSelector(store=> store.breedsSlice);
+    const inputState = useSelector(store => store.inputSlice)
+    const filteredBreeds = useSelector(store => store.breedsSlice.breeds.filter((item) => {
+        return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
+    }))
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(loadBreeds());
     }, [dispatch])
-    const filteredBreeds = breedsState.breeds.filter((item)=> {
-        return item.image && item.image.url && item.name
-    });
+
     const rowsBreeds = filteredBreeds.map((item)=>{
         return {
             id: item.id,

@@ -12,9 +12,9 @@ export const Breed = ({breed}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     let history = useHistory();
-    const handleClick = (id) => {
+    const handleClick = () => {
         dispatch(clearImagesReducerAction())
-        history.push(`/gallery/${id}`)
+        history.push(`/gallery/${breed.id}`)
     }
 
     return (
@@ -25,7 +25,7 @@ export const Breed = ({breed}) => {
                 className={classes.gridListTileBar}
                 actionIcon={
                     <div className={classes.icons}>
-                        <InfoIcon className={classes.icon} onClick={() => handleClick(breed.id)}/>
+                        <InfoIcon className={classes.icon} onClick={handleClick}/>
                         <LikeButton breedId={breed.id}/>
                     </div>
                 }

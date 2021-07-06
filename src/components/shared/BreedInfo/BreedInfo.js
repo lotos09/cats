@@ -11,7 +11,7 @@ import {LikeButton} from "../LikeButton";
 
 export function BreedInfo() {
     const classes = useStyles();
-    let {breedId} = useParams();
+    const {breedId} = useParams();
     const dispatch = useDispatch();
 
 
@@ -19,38 +19,33 @@ export function BreedInfo() {
 
     const images = useSelector(store => store.breedImagesSlice);
     useEffect(() => {
-        if (selectedBreed !== undefined)
+        if (selectedBreed)
             dispatch(loadBreedImages(selectedBreed.id))
     }, [dispatch, selectedBreed])
 
 
     return (
         <div className={classes.infoPage}>
-
-
-            {Boolean(!images.length) && <div className={classes.spinner}>
+            {!images.length && <div className={classes.spinner}>
                 <CircularProgress/>
             </div>}
-            {Boolean(images.length) &&
-                <div className={classes.breedInfoGallery} >
-                    {images.map((item) => (
-                        <div className={classes.imageContainer} key={item}>
-                            <img alt='breedImage' src={item} key={item}/>
-                        </div>
-                    ))}
-                </div>}
-            {selectedBreed !== undefined &&
+            {!!images.length &&
+            <div className={classes.breedInfoGallery}>
+                {images.map((item) => (
+                    <div className={classes.imageContainer} key={item}>
+                        <img alt='breedImage' src={item} key={item}/>
+                    </div>
+                ))}
+            </div>}
+            {selectedBreed &&
             <div className={classes.paper}>
-
                 <Paper elevation={1}>
                     <div>
                         <IconButton>
                             <LikeButton breedId={selectedBreed.id}/>
                         </IconButton>
 
-
                     </div>
-
                     <h2>{selectedBreed.name}</h2>
                     <ul>
                         <li>{selectedBreed.description}</li>
@@ -60,7 +55,6 @@ export function BreedInfo() {
                     </ul>
                 </Paper>
             </div>}
-
         </div>
     );
 }

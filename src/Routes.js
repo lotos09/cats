@@ -1,7 +1,7 @@
 import React from "react";
 import {Gallery} from "./components/Gallery/Gallery";
-import DataGridDemo from "./components/Table-DataGrid/DataGrid";
-import {BreedsTable} from "./components/Table-DataGrid/BreedsTable";
+import DataGridDemo from "./components/TableDataGrid/DataGrid";
+import {BreedsTable} from "./components/TableDataGrid/BreedsTable";
 import {Home} from "./components/Home/Home";
 //Routes
 import {
@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import {SearchAppBar} from "./components/shared/AppBar/AppBar";
 import {Favorites} from "./components/Favorite/Favorites";
+import {BreedInfo} from "./components/shared/BreedInfo/BreedInfo";
 
 
 export function Routes() {
@@ -23,8 +24,11 @@ export function Routes() {
                     <Route path='/favorites'>
                         <Favorites/>
                     </Route>
-                    <Route path='/gallery'>
+                    <Route exact path='/gallery'>
                         <Gallery/>
+                    </Route>
+                    <Route exact path={`/gallery/:breedId`}>
+                        <BreedInfo/>
                     </Route>
                     <Route path='/dataGrid'>
                         <DataGridDemo/>

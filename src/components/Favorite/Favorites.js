@@ -9,12 +9,11 @@ export function Favorites() {
     const classes = useStyles();
     const favoriteIdsState = useSelector(store => store.favorites);
 
-    const breeds = useSelector(store => store.breedsSlice.breeds);
-    const favoriteBreeds = breeds.filter((item)=> favoriteIdsState.includes(item.id))
+    const breeds = useSelector(store => store.breedsSlice.breeds.filter((item)=> favoriteIdsState.includes(item.id)));
 
 
     const inputState = useSelector(store => store.inputSlice)
-    const filteredBreeds = favoriteBreeds.filter((item) => {
+    const filteredBreeds = breeds.filter((item) => {
         return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
     });
 

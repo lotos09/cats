@@ -5,14 +5,11 @@ import logo from '../../assets/donVito.jpg';
 import {useStyles} from "./homeStyles";
 
 
-
 export const Home = () => {
     const classes = useStyles();
+    const history = useHistory();
 
-    let history = useHistory();
-
-
-    function galleryClick() {
+    const galleryClick = () => {
         history.push('/gallery')
     }
 
@@ -23,7 +20,6 @@ export const Home = () => {
                     variant='contained' color='primary'>
                 Ask don vito with respect
             </Button>
-
         </div>
     )
 }
