@@ -5,9 +5,6 @@ export const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         width: '100%'
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
     title: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {
@@ -55,5 +52,17 @@ export const useStyles = makeStyles((theme) => ({
     },
     toolBar: {
         justifyContent: "space-between",
-    }
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        '@media (min-width: 500px)': {
+            display: 'none'
+        },
+    },
+    buttonGroup: {
+        '@media (max-width: 500px)': {
+            display: 'none'
+        },
+    },
+
 }));

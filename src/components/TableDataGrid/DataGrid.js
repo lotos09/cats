@@ -13,7 +13,7 @@ const columns = [
         field: "",
         headerName: "Favs",
         sortable: false,
-        width: 100,
+        width: 150,
         renderCell: (params) => {
             return <LikeButton breedId={params.id}/>;
         }
@@ -107,14 +107,14 @@ export default function DataGridDemo() {
 
     return (
             <div className={classes.rootDiv}>
-                <Button variant='contained' color='primary'>
-                    <Link to='/table'>table</Link>
+                <Button component={Link} to='/table' variant='contained' color='primary'>
+                    table
                 </Button>
                 <DataGrid
                     classes={{
                         root: classes.rootGrid,
                         row: classes.row,
-                        columnHeader: classes.columnHeader
+                        columnHeader: classes.columnHeader,
                     }}
                     disableColumnMenu
                     rows={rowsBreeds}

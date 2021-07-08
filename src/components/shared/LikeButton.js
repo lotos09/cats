@@ -1,7 +1,7 @@
 import React from "react";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import {addFavoriteAction, removeFromFavoritesAction} from "../../store/reducers/favoritesReducer";
 import {useDispatch, useSelector} from "react-redux";
+import {addFavoriteAction, removeFromFavoritesAction} from "../../store/actions/favoritesReducerActions";
 
 export function LikeButton({breedId}) {
     const dispatch = useDispatch();

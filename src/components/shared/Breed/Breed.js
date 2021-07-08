@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {clearImagesReducerAction} from "../../../store/actions/imagesReducerActions";
 import {GridListTile, GridListTileBar} from "@material-ui/core";
 import React from "react";
-import {useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import InfoIcon from '@material-ui/icons/Info';
 import {LikeButton} from "../LikeButton";
 
@@ -11,10 +11,9 @@ import {LikeButton} from "../LikeButton";
 export const Breed = ({breed}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    let history = useHistory();
     const handleClick = () => {
         dispatch(clearImagesReducerAction())
-        history.push(`/gallery/${breed.id}`)
+
     }
 
     return (
@@ -25,7 +24,9 @@ export const Breed = ({breed}) => {
                 className={classes.gridListTileBar}
                 actionIcon={
                     <div className={classes.icons}>
-                        <InfoIcon className={classes.icon} onClick={handleClick}/>
+                        <Link to={`/gallery/${breed.id}`}>
+                            <InfoIcon className={classes.icon} onClick={handleClick}/>
+                        </Link>
                         <LikeButton breedId={breed.id}/>
                     </div>
                 }
