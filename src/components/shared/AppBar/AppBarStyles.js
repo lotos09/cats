@@ -20,6 +20,7 @@ export const useStyles = makeStyles((theme) => ({
         },
         marginLeft: 0,
         width: '100%',
+        maxWidth: 300,
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1),
             width: 'auto',
@@ -43,6 +44,7 @@ export const useStyles = makeStyles((theme) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
+
         [theme.breakpoints.up('sm')]: {
             width: '12ch',
             '&:focus': {
@@ -52,5 +54,17 @@ export const useStyles = makeStyles((theme) => ({
     },
     toolBar: {
         justifyContent: "space-between",
-    }
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        '@media (min-width: 500px)': {
+            display: 'none'
+        },
+    },
+    buttonGroup: {
+        '@media (max-width: 500px)': {
+            display: 'none'
+        },
+    },
+
 }));

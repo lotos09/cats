@@ -7,6 +7,9 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         display: "flex",
         justifyContent: "center",
+        '@media (max-width: 500px)': {
+            width: '100%',
+        },
     },
     gridListTileBar: {
         cursor: 'pointer',
