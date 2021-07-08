@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {clearImagesReducerAction} from "../../../store/actions/imagesReducerActions";
 import {GridListTile, GridListTileBar} from "@material-ui/core";
 import React from "react";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import InfoIcon from '@material-ui/icons/Info';
 import {LikeButton} from "../LikeButton";
 

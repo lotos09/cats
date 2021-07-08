@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 //app components
 import {loadBreeds} from "../../store/actions/breedsReducerActions";
@@ -33,10 +33,12 @@ export function BreedsTable() {
 
 //input
     const inputState = useSelector(store => store.inputSlice)
-    const filteredBreeds = breedsState.breeds.filter((item) => {
-        return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
-    });
 
+    const filteredBreeds = useMemo(()=>{
+        return breedsState.breeds.filter((item) => {
+            return item.image && item.image.url && item.name.toLowerCase().includes(inputState.toLowerCase())
+        })
+    }, [breedsState.breeds, inputState] )
     const sortedBreeds = sortFunc(sortState, filteredBreeds);
 
     const sortButton = (column) => setSortState(prevState => ({...prevState, orderBy: column, order: !prevState.order}))

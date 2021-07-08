@@ -1,7 +1,7 @@
 import {getBreedImages} from "../../API/api";
 
 export const loadBreedImages = (breedName) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         const payload = await getBreedImages(breedName);
         dispatch({
             type: 'imgCat/getImgCat',

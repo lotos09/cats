@@ -4,25 +4,36 @@ export const useStyles = makeStyles((theme)=> ({
     infoPage: {
         display: "flex",
         flexDirection: 'column',
-        alignItems: "center"
+        alignItems: "center",
     },
 
     breedInfoGallery: {
         display: "flex",
         flexWrap: "wrap",
         marginBottom: '50px',
+        maxWidth: '100%'
     },
     imageContainer: {
-        height: '40vh',
+        height: '30vh',
+        maxWidth: '50%',
         flexGrow: 1,
         padding: 5,
+        '@media (max-width: 800px)': {
+            height: '40%',
+        },
 
       '& > img': {
           maxHeight: '100%',
           minWidth: '100%',
+          maxWidth: '50%',
           objectFit: 'cover',
           verticalAlign: 'bottom',
           borderRadius: 4,
+          '@media (max-width: 500px)': {
+              maxWidth: '90vw',
+              height: '150px',
+
+          },
       },
     },
 
