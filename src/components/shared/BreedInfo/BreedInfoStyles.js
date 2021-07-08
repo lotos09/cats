@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme)=> ({
         flexDirection: 'column',
         alignItems: "center"
     },
+
     breedInfoGallery: {
         display: "flex",
         flexWrap: "wrap",

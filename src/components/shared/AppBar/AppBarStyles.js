@@ -5,9 +5,6 @@ export const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         width: '100%'
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
     title: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {

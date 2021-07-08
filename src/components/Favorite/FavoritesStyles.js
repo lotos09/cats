@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     gridList: {
         display: "flex",
         justifyContent: "center",
-        width: '80%',
+        width: '100%',
         height: '100%',
         transform: 'translateZ(0)',
     },

@@ -14,7 +14,6 @@ export const useStyles = makeStyles((theme) => ({
 
     icons: {
         display: "flex",
-        alignItems: "center",
         justifyContent: 'space-between',
         minWidth: 100,
         marginRight: 15,
