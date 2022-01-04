@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         '@media (max-width: 500px)': {
-            width: '100%',
+            width: '95%',
         },
     },
     gridListTileBar: {

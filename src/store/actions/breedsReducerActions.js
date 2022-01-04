@@ -6,7 +6,6 @@ export const loadBreeds = () => {
         dispatch({
             type: 'breeds/loadBreeds',
             payload: payload
-
         })
     }
 }
